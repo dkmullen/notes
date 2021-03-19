@@ -1,0 +1,14 @@
+Elastic Beanstalk / RDS notes
+
+Test the ability to connect to remote RDS db from the command line with:
+
+nc -zv <rds db endpoint> <port>
+nc -zv fake-jurors.cjq6dzefzwe3.us-east-2.rds.amazonaws.com 3306
+
+Prep Laravel app for deploy to EBS with:
+zip ../jurorApp.zip -r * .[^.]* -x "vendor/*"
+
+If you can't connect from local SQL app (such as Sequel Pro) to remote RDS database, add an inbound rule to the DB security group allowing TCP traffic from your IP
+
+Juror RDS endpoint: fake-jurors.cjq6dzefzwe3.us-east-2.rds.amazonaws.com
+Port: 3306

@@ -1,0 +1,140 @@
+Laraval notes
+
+laravel new <app name>
+php artisan serve
+php artisan make:controller PostsController
+
+sudo mysql -u root -p (logs me in)ß
+mysql -u dkm
+
+
+-- Start and Stop XAMPP servers ---
+sudo /opt/lampp/lampp start
+sudo /opt/lampp/lampp stop
+
+-- Start XAMPP Graphical Tool for managing servers --
+cd /opt/lampp
+sudo ./manager-linux-x64.run
+
+127.0.0.1
+
+--- Artisan ---
+php artisan  - provides a list of artisan commands
+
+
+-- Migrations (under 'database' in the code) --
+php artisan make:migration create_posts_table (Convention: create_<table-name>_table)
+php artisan migrate
+php artisan migrate:rollback
+php artisan migrate:fresh
+
+--- After cloning a repo ---
+php composer.phar install - to install dependencies; and if it fails...
+composer install - worked on MAC
+
+php -r "readfile('https://getcomposer.org/installer');" | php 
+...moved composer.phar to /usr/local/bin so it should run globally
+
+php artisan tinker
+--- Adding a record ---
+$assignment = new App\Models\Assignment;
+$assignment->body = 'Finish school work';
+$assignment->save();
+
+--- Retrieving (in tinker) ---
+App\Models\Assignment::all();
+App\Models\Assignment::first();
+App\Models\Assignment::where('completed', false)->get();
+
+$meAssignment = App\Models\Assignment::first();
+$meAssignment->uncomplete(); (Calls a method in the business logic of our Assignment Model)
+--- :: and -> are ways of calling a method - not clear on the reason for each ---
+
+@extends ('layout')
+@section ('content')
+{{ $post }}
+@endsection
+
+...and in the layout view...
+@yield ('content')
+
+--- Actively compiling scss, js from the resources dir to public ---
+* Install with npm install, run with npm run watch (compiles on save)
+
+--- Variations on fetching from a list of articles ---
+    $article = App\Models\Article::all();
+    $article = App\Models\Article::take(2)->get();
+    $article = App\Models\Article::paginate(2);
+    // Shorthand for the latest 'created_at' but you can sort by any timestamp
+    $article = App\Models\Article::latest()->get();
+$article = App\Models\Article::take(3)->latest()->get();
+
+--- Seven restful controller actions ---
+- index - to LIST some records - ie, getAll
+- show - to SHOW ONE - ie, getOne
+- create - to make one
+- store - to persist or store one - POST 
+- edit - to change the resource...
+- update - ....and to persist or store the updated one
+- destroy
+
+Here's the MAGIC: Use...
+php artisan make:controller ProjectsController -r -m MyProject
+Makes a controller and model, fills in all seven of the above actions and calls my model (MyProject) as an argument!
+
+GET /articles
+GET /articles/:id
+POST /articles
+PUT /articles/:id
+DELETE /articles/:id
+
+
+---
+
+Make use of the user factory built in to laravel apps to generate fake users:
+php artisan tinker
+User::factory()->count(4)->create();
+User::factory()->create();
+
+Make a new factory:
+php artisan make:factory ArticleFactory
+
+
+--- Authentication
+-- setup -- adds auth scaffolding under views, and an auth route under routes.
+-- this example specifies vue as a framework; could be bootstrap or react also
+laravel new authapp
+composer require laravel/ui --dev
+php artisan ui vue --auth
+npm install && npm run dev
+
+php artisan route:list (shows all routes for the project)
+Make a db in phpmyadmin
+php artisan migrate (to transfer all the newly created stuff - had to change port to 3307 to make this work)
+
+Auth middleware are called in the controller(s). More common to chain routes in the routes file 
+
+// To display different greetings for signed in /not signed in users...
+@if (Auth::check())
+    Hi, {{ Auth::user()->name }}
+@else
+    Sign in
+@endif
+
+or a more laravel way...(see preset examples in welcome blade)
+@auth
+    Hi, {{ Auth::user()->name }}
+@else
+    Sign in
+@endauth
+
+And here is the opposite
+@guest
+   Please sign in
+@else
+     Hi, {{ Auth::user()->name }}
+@endguest
+
+For the 'forgot pw' lesson, changed mail mailer (in env) to 'log' and the pw reset email came to laravel.log
+
+23634775 1939-4-7
