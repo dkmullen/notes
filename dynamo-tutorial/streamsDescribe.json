@@ -1,0 +1,28 @@
+{
+    "StreamDescription": {
+        "StreamArn": "arn:aws:dynamodb:us-east-2:794314049287:table/BaseballStats/stream/2021-03-24T16:13:03.488",
+        "StreamLabel": "2021-03-24T16:13:03.488",
+        "StreamStatus": "ENABLED",
+        "StreamViewType": "NEW_AND_OLD_IMAGES",
+        "CreationRequestDateTime": "2021-03-24T16:13:03.486Z",
+        "TableName": "BaseballStats",
+        "KeySchema": [
+            {
+                "AttributeName": "TeamID",
+                "KeyType": "HASH"
+            },
+            {
+                "AttributeName": "SK",
+                "KeyType": "RANGE"
+            }
+        ],
+        "Shards": [
+            {
+                "ShardId": "shardId-00000001616602384082-54c8cf79",
+                "SequenceNumberRange": {
+                    "StartingSequenceNumber": "3915100000000006054712873"
+                }
+            }
+        ]
+    }
+}
