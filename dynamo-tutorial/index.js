@@ -9,14 +9,14 @@ AWS.config.update({
 const dynamodb = new AWS.DynamoDB();
 const params = 
 {
-    TableName: 'NodeJsBaseballStats',
+    TableName: 'Music',
     KeySchema: [
-        { AttributeName: 'TeamID', KeyType: 'HASH' }, // Partition Key
-        { AttributeName: 'SK', KeyType: 'RANGE' } // Sort Key
+        { AttributeName: 'Artist', KeyType: 'HASH' }, // Partition Key
+        { AttributeName: 'SongTitle', KeyType: 'RANGE' } // Sort Key
     ],
     AttributeDefinitions: [
-        { AttributeName:'TeamID', AttributeType: 'S' },
-        { AttributeName:'SK', AttributeType: 'S' }
+        { AttributeName:'Artist', AttributeType: 'S' },
+        { AttributeName:'SongTitle', AttributeType: 'S' }
     ],
     ProvisionedThroughput: {
         ReadCapacityUnits: 5,

@@ -5,7 +5,7 @@ AWS.config.update({
     endpoint: 'http://localhost:8000'
 });
 
-var tableName = 'NodeJsBaseballStats';
+var tableName = 'Music';
 
 var dynamodb = new AWS.DynamoDB();
 
@@ -13,14 +13,15 @@ var dynamodb = new AWS.DynamoDB();
 var teams = require('./teams.json');
 var players = require('./players.json');
 var games = require('./games.json');
+var music = require('./music.json');
 
-putItems(teams)
-    .then(() => {
-        return putItems(players);
-    })
-    .then(() => {
-        return putItems(games);
-    })
+putItems(music)
+    // .then(() => {
+    //     return putItems(players);
+    // })
+    // .then(() => {
+    //     return putItems(games);
+    // })
     .catch((err) => {
         console.error('Insert failed', err);
     });

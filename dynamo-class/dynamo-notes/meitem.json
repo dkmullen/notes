@@ -1,0 +1,6 @@
+{
+	"user_id": { "S": "123abc" },
+	"timestamp": { "N": "1622748063" },
+	"content": { "S": "Fourscore and seven years ago..." },
+	"title": { "S": "The Gettysburg IP Address" }
+}

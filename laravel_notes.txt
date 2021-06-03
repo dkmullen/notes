@@ -138,3 +138,14 @@ And here is the opposite
 For the 'forgot pw' lesson, changed mail mailer (in env) to 'log' and the pw reset email came to laravel.log
 
 23634775 1939-4-7
+
+Deleting in laravel:
+
+    public function destroyGrandJuryDate($id)
+    {
+        $date = GrandJuryDates::where('id', $id);
+        $date->delete();
+    }
+
+Date format
+date("F d, Y") = April 13, 2021 (matches grand jury date format)

@@ -1,4 +1,12 @@
 AWS CLI
+May 17 - AWS S# and Cloudfront Deployment:
+
+aws s3 sync /Users/dennis.mullen/Documents/knox-sites/aws/permits-dkm-2/dist s3://amazon-cloudfront-secure-static-site-s3bucketroot-16zzxa26ze873\?region\=us-east-1 --exclude "*.DS_Store*" --exclude "*.git*" --delete
+
+aws s3 sync /Users/dennis.mullen/Documents/knox-sites/kcg-web-permitsubmit/dist s3://epw-permitsubmit.knoxcountytn.gov/ --exclude "*.DS_Store*" --exclude "*.git*" --delete
+
+aws cloudfront create-invalidation --distribution-id E1OAIC68Z4XZPD --paths "/*"
+-----
 
 export AWS_PROFILE=dkm // Specify aws profile for the current terminal session
 aws s3 ls s3:://my-bucket --profile dkm // Specify profile for one command

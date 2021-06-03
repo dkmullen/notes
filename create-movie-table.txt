@@ -1,0 +1,3 @@
+Use this command and the related file to create an online AWS dynamoDB table from the
+
+aws dynamodb create-table --cli-input-json file://create-movie-table.json --region us-east-2

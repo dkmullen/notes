@@ -47,6 +47,16 @@ Run locally from home dir: `./runDynamo.sh` (we set up that shellscript earlier)
 
 
 `
-aws dynamodb create-table --table-name LocalBaseballStats --attribute-definitions AttributeName=TeamID,AttributeType=S AttributeName=SK,AttributeType=S --key-schema AttributeName=TeamID,KeyType=HASH AttributeName=SK,KeyType=RANGE --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 --endpoint-url http://localhost:8000
+aws dynamodb create-table \
+--table-name LocalBaseballStats \
+--attribute-definitions AttributeName=TeamID,AttributeType=S AttributeName=SK,AttributeType=S \
+--key-schema AttributeName=TeamID,KeyType=HASH AttributeName=SK,KeyType=RANGE \
+--provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 \
+--endpoint-url http://localhost:8000
 `
+
+Use this command and the related file to create an online AWS dynamoDB table from the
+
+`aws dynamodb create-table --cli-input-json file://create-movie-table.json --region us-east-2`
+
 
